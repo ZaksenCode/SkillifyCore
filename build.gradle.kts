@@ -1,7 +1,9 @@
 plugins {
     kotlin("jvm") version "2.1.10"
     kotlin("plugin.serialization") version "2.1.0"
+
     id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("maven-publish")
 }
 
 group = "me.zaksen"
@@ -42,5 +44,25 @@ tasks.processResources {
     filteringCharset = "UTF-8"
     filesMatching("plugin.yml") {
         expand(props)
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/ZaksenCode/SkillifyCore")
+            credentials {
+                username = (project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")) as String
+                password = (project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")) as String
+            }
+        }
+    }
+    publications {
+        register<MavenPublication>("gpr") {
+            artifactId = "skillify-core"
+            version = project.version as String
+            from(components["java"])
+        }
     }
 }
