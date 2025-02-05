@@ -4,7 +4,7 @@ import me.zaksen.skillify_core.api.config.loadConfig
 import me.zaksen.skillify_core.config.CoreConfig
 import me.zaksen.skillify_core.database.PlayerProfileRepository
 import me.zaksen.skillify_core.event.PlayerListener
-import me.zaksen.skillify_core.recipe.RecipeRegistry
+import me.zaksen.skillify_core.api.recipe.RecipeRegistry
 import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File;

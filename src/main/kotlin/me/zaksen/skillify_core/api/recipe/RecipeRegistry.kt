@@ -1,4 +1,4 @@
-package me.zaksen.skillify_core.recipe
+package me.zaksen.skillify_core.api.recipe
 
 import me.zaksen.skillify_core.api.config.data.recipe.CookingRecipe
 import org.bukkit.Bukkit
