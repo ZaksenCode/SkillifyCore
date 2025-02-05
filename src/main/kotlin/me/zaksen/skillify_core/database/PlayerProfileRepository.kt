@@ -2,11 +2,13 @@ package me.zaksen.skillify_core.database
 
 import me.zaksen.skillify_core.api.database.Repository
 import me.zaksen.skillify_core.database.dao.PlayerProfile
+import org.slf4j.Logger
 import java.sql.Connection
 import java.sql.DriverManager
 import java.util.*
 
 class PlayerProfileRepository(
+    private val logger: Logger,
     host: String,
     port: String,
     base: String,
@@ -34,7 +36,9 @@ class PlayerProfileRepository(
                 cache.add(PlayerProfile(id, UUID.fromString(uuid), name, registerTime))
             }
 
-        } catch (_: Exception) {}
+        } catch (_: Exception) {
+            logger.warn("An error was received during the database initialization process.")
+        }
     }
 
     override fun add(value: PlayerProfile) {
@@ -49,7 +53,9 @@ class PlayerProfileRepository(
             statement.execute()
             statement.close()
             cache.add(value)
-        } catch (_: Exception) {}
+        } catch (_: Exception) {
+            logger.warn("Received an error when adding data to the database to a {$table} table.")
+        }
     }
 
     override fun remove(value: PlayerProfile) {
@@ -62,7 +68,9 @@ class PlayerProfileRepository(
             statement.execute()
             statement.close()
             cache.remove(value)
-        } catch (_: Exception) {}
+        } catch (_: Exception) {
+            logger.warn("Received an error when deleting data from the database from a {$table} table.")
+        }
     }
 
     override fun update(value: PlayerProfile) {
@@ -80,7 +88,9 @@ class PlayerProfileRepository(
             statement.close()
             cache.removeIf { it.id == value.id }
             cache.add(value)
-        } catch (_: Exception) {}
+        } catch (_: Exception) {
+            logger.warn("Received an error when updating data from the database to a {$table} table.")
+        }
     }
 
     override fun query(specification: PlayerProfileSpecification): Set<PlayerProfile> {

@@ -7,10 +7,13 @@ import me.zaksen.skillify_core.event.PlayerListener
 import me.zaksen.skillify_core.api.recipe.RecipeRegistry
 import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import java.io.File;
 
 class SkillifyCore : JavaPlugin() {
 
+    private val logger: Logger = LoggerFactory.getLogger(this::class.java)
     private lateinit var coreConfig: CoreConfig
     lateinit var playersRepository: PlayerProfileRepository
     val defaultRecipeRegistry: RecipeRegistry = RecipeRegistry()
@@ -20,6 +23,7 @@ class SkillifyCore : JavaPlugin() {
         coreConfig = loadConfig(File(dataFolder, "config.yml"))
 
         playersRepository = PlayerProfileRepository(
+            logger,
             coreConfig.mysql.host,
             coreConfig.mysql.port,
             coreConfig.mysql.base,

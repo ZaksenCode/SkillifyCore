@@ -1,5 +1,6 @@
 package me.zaksen.skillify_core.api.config.serialization.surrogate
 
+import com.destroystokyo.paper.Namespaced
 import com.google.common.collect.Multimap
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -16,10 +17,10 @@ import org.bukkit.persistence.PersistentDataContainer
 @SerialName("ItemMeta")
 data class ItemMetaSurrogate(
     @SerialName("display_name")
-    val displayName: Component,
+    val displayName: Component?,
 
     @SerialName("lore")
-    val lore: List<Component>,
+    val lore: List<Component>?,
 
     @SerialName("custom_model_data")
     val customModelData: Int,
@@ -37,13 +38,13 @@ data class ItemMetaSurrogate(
     val attributeModifiers: Multimap<
             Attribute,
             @Serializable(with = AttributeModifierSerializer::class) AttributeModifier
-    >,
+    >?,
 
     @SerialName("destroyable_keys")
-    val destroyableKeys: Set<@Serializable(with = NamespacedKeySerializer::class)NamespacedKey>,
+    val destroyableKeys: Set<@Serializable(with = NamespacedSerializer::class) Namespaced>,
 
     @SerialName("placeable_keys")
-    val placeableKeys: Set<@Serializable(with = NamespacedKeySerializer::class)NamespacedKey>,
+    val placeableKeys: Set<@Serializable(with = NamespacedSerializer::class) Namespaced>,
 
     @SerialName("persistent_data_container")
     @Serializable(with = PersistentDataContainerSerializer::class)

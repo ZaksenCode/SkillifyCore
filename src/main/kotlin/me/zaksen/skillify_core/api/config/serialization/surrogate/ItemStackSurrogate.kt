@@ -2,6 +2,7 @@ package me.zaksen.skillify_core.api.config.serialization.surrogate
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import me.zaksen.skillify_core.api.config.serialization.ItemMetaSerializer
 import org.bukkit.inventory.meta.ItemMeta
 
 @Serializable
@@ -14,6 +15,6 @@ data class ItemStackSurrogate(
     val amount: Int,
 
     @SerialName("meta")
-    @Serializable
+    @Serializable(with = ItemMetaSerializer::class)
     val meta: ItemMeta
 )
