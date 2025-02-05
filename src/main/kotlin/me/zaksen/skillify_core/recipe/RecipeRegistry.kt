@@ -189,7 +189,7 @@ class RecipeRegistry {
         exactChoice: Boolean
     ) {
         val choice: RecipeChoice = getRecipeChoice(input, exactChoice)
-        val blastingRecipe = CampfireRecipe(key, output, choice, experience, cookingTime)
+        val blastingRecipe = BlastingRecipe(key, output, choice, experience, cookingTime)
         Bukkit.addRecipe(blastingRecipe)
         registeredRecipes.add(key)
     }
@@ -226,7 +226,7 @@ class RecipeRegistry {
         exactChoice: Boolean
     ) {
         val choice: RecipeChoice = getRecipeChoice(input, exactChoice)
-        val smokingRecipe = CampfireRecipe(key, output, choice, experience, cookingTime)
+        val smokingRecipe = SmokingRecipe(key, output, choice, experience, cookingTime)
         Bukkit.addRecipe(smokingRecipe)
         registeredRecipes.add(key)
     }
