@@ -13,7 +13,7 @@ import java.io.File;
 
 class SkillifyCore : JavaPlugin() {
 
-    private val logger: Logger = LoggerFactory.getLogger(this::class.java)
+    private val logger: Logger = LoggerFactory.getLogger("SkillifyCore")
     private lateinit var coreConfig: CoreConfig
     lateinit var playersRepository: PlayerProfileRepository
     val defaultRecipeRegistry: RecipeRegistry = RecipeRegistry()

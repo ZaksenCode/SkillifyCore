@@ -36,6 +36,7 @@ class PlayerProfileRepository(
                 cache.add(PlayerProfile(id, UUID.fromString(uuid), name, registerTime))
             }
 
+            logger.info("Loaded ${cache.size} profiles")
         } catch (_: Exception) {
             logger.warn("An error was received during the database initialization process.")
         }
