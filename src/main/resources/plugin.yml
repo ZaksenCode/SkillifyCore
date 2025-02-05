@@ -1,5 +1,5 @@
 name: SkillifyCore
-version: '1.0.4'
+version: '1.0.5'
 main: me.zaksen.skillify_core.SkillifyCore
 api-version: '1.20'
 authors: [ Zaksen_ ]

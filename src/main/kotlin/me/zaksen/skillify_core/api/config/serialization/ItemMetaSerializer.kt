@@ -47,11 +47,17 @@ class ItemMetaSerializer: KSerializer<ItemMeta> {
     }
 
     override fun serialize(encoder: Encoder, value: ItemMeta) {
+        val cmd = if(value.hasCustomModelData()) {
+            value.customModelData
+        } else {
+            0
+        }
+
         encoder.encodeSerializableValue(ItemMetaSurrogate.serializer(),
             ItemMetaSurrogate(
                 value.displayName(),
                 value.lore(),
-                value.customModelData,
+                cmd,
                 value.enchants,
                 value.itemFlags,
                 value.isUnbreakable,
