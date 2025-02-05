@@ -2,17 +2,15 @@ package me.zaksen.skillify_core.api.config.serialization.surrogate
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import me.zaksen.skillify_core.api.config.serialization.UUIDSerializer
+import me.zaksen.skillify_core.api.config.serialization.UUIDValue
 import org.bukkit.attribute.AttributeModifier
 import org.bukkit.inventory.EquipmentSlot
-import java.util.UUID
 
 @Serializable
 @SerialName("AttributeModifier")
 data class AttributeModifierSurrogate(
     @SerialName("uuid")
-    @Serializable(with = UUIDSerializer::class)
-    val uuid: UUID,
+    val uuid: UUIDValue,
 
     @SerialName("name")
     val name: String,

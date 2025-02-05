@@ -1,7 +1,7 @@
 package me.zaksen.skillify_core.api.config.serialization
 
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
@@ -9,7 +9,6 @@ import me.zaksen.skillify_core.api.config.serialization.surrogate.AttributeModif
 import org.bukkit.attribute.AttributeModifier
 
 class AttributeModifierSerializer : KSerializer<AttributeModifier> {
-    @OptIn(ExperimentalSerializationApi::class)
     override val descriptor: SerialDescriptor = SerialDescriptor(
         "org.bukkit.attribute.AttributeModifier",
         AttributeModifierSurrogate.serializer().descriptor
@@ -41,3 +40,6 @@ class AttributeModifierSerializer : KSerializer<AttributeModifier> {
         )
     }
 }
+
+/** Data type for easier serialization AttributeModifier */
+typealias AttributeModifierValue = @Serializable(AttributeModifierSerializer::class) AttributeModifier

@@ -1,6 +1,7 @@
 package me.zaksen.skillify_core.api.config.serialization
 
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ByteArraySerializer
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
@@ -23,3 +24,6 @@ class PersistentDataContainerSerializer: KSerializer<PersistentDataContainer> {
         encoder.encodeSerializableValue(delegateSerializer, value.serializeToBytes())
     }
 }
+
+/** Data type for easier serialization PersistentDataContainer */
+typealias PersistentDataContainerValue = @Serializable(PersistentDataContainerSerializer::class) PersistentDataContainer

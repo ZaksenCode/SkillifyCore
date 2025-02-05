@@ -1,6 +1,7 @@
 package me.zaksen.skillify_core.api.config.serialization
 
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.descriptors.SerialDescriptor
@@ -21,3 +22,6 @@ class UUIDSerializer: KSerializer<UUID> {
         encoder.encodeString(value.toString())
     }
 }
+
+/** Data type for easier serialization UUID */
+typealias UUIDValue = @Serializable(UUIDSerializer::class) UUID

@@ -1,6 +1,7 @@
 package me.zaksen.skillify_core.api.config.serialization
 
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
@@ -23,3 +24,6 @@ class EnchantmentSerializer: KSerializer<Enchantment> {
         encoder.encodeSerializableValue(surrogate, EnchantmentSurrogate(value.key))
     }
 }
+
+/** Data type for easier serialization ItemStack */
+typealias EnchantmentValue = @Serializable(EnchantmentSerializer::class) Enchantment

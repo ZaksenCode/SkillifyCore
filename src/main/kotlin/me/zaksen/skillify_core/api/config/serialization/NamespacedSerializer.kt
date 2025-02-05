@@ -2,6 +2,7 @@ package me.zaksen.skillify_core.api.config.serialization
 
 import com.destroystokyo.paper.Namespaced
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
@@ -27,3 +28,6 @@ class NamespacedSerializer : KSerializer<Namespaced> {
         )
     }
 }
+
+/** Data type for easier serialization Namespaced */
+typealias NamespacedValue = @Serializable(NamespacedSerializer::class) Namespaced
