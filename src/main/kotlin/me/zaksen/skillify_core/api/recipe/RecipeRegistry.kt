@@ -6,6 +6,9 @@ import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.inventory.*
 
+/**
+ * Mostly a utilitarian class, for conveniently adding recipes and revealing them to the player.
+ */
 class RecipeRegistry {
 
     private val registeredRecipes: MutableSet<NamespacedKey> = mutableSetOf()
