@@ -60,6 +60,14 @@ class RecipeRegistry {
         this.registerShapedRecipe(key, recipe.output, recipe.grid, recipe.gridResolve)
     }
 
+    /**
+     * Creates a ShapelessRecipe and registers it in the given register.
+     * @param key The key by which the recipe will be registered.
+     * @param output The item we will get as a result of the recipe
+     * @param ingredients Ingredients needed for crafting.
+     *
+     * @see ShapelessRecipe
+     */
     fun registerShapelessRecipe(
         key: NamespacedKey,
         output: ItemStack,
@@ -75,10 +83,29 @@ class RecipeRegistry {
         registeredRecipes.add(key)
     }
 
+    /**
+     * Creates a ShapelessRecipe and registers it in the given register.
+     * @param key The key by which the recipe will be registered.
+     * @param recipe Recipe object
+     *
+     * @see ShapelessRecipe
+     */
     fun registerShapelessRecipe(key: NamespacedKey, recipe: me.zaksen.skillify_core.api.config.data.recipe.ShapelessRecipe) {
         this.registerShapelessRecipe(key, recipe.output, recipe.ingredients)
     }
 
+    /**
+     * Creates a FurnaceRecipe and registers it in the given register.
+     * @param key The key by which the recipe will be registered.
+     * @param output The item we will get as a result of the recipe
+     * @param input The subject from which we will be getting output
+     * @param experience The experience the player will gain as a result of the recipe
+     * @param cookingTime Time required for cooking (in ticks)
+     * @param exactChoice If true, only an ItemStack with exactly the same Nbt will be able to participate in the recipe.
+     *
+     * @see FurnaceRecipe
+     * @see getRecipeChoice
+     */
     fun registerFurnaceRecipe(
         key: NamespacedKey,
         output: ItemStack,
@@ -93,10 +120,29 @@ class RecipeRegistry {
         registeredRecipes.add(key)
     }
 
+    /**
+     * Creates a FurnaceRecipe and registers it in the given register.
+     * @param key The key by which the recipe will be registered.
+     * @param recipe Recipe object
+     *
+     * @see FurnaceRecipe
+     */
     fun registerFurnaceRecipe(key: NamespacedKey, recipe: CookingRecipe) {
         this.registerFurnaceRecipe(key, recipe.output, recipe.input, recipe.experience, recipe.cookingTime, recipe.exactMatch)
     }
 
+    /**
+     * Creates a CampfireRecipe and registers it in the given register.
+     * @param key The key by which the recipe will be registered.
+     * @param output The item we will get as a result of the recipe
+     * @param input The subject from which we will be getting output
+     * @param experience The experience the player will gain as a result of the recipe
+     * @param cookingTime Time required for cooking (in ticks)
+     * @param exactChoice If true, only an ItemStack with exactly the same Nbt will be able to participate in the recipe.
+     *
+     * @see CampfireRecipe
+     * @see getRecipeChoice
+     */
     fun registerCampfireRecipe(
         key: NamespacedKey,
         output: ItemStack,
@@ -111,10 +157,29 @@ class RecipeRegistry {
         registeredRecipes.add(key)
     }
 
+    /**
+     * Creates a CampfireRecipe and registers it in the given register.
+     * @param key The key by which the recipe will be registered.
+     * @param recipe Recipe object
+     *
+     * @see CampfireRecipe
+     */
     fun registerCampfireRecipe(key: NamespacedKey, recipe: CookingRecipe) {
         this.registerCampfireRecipe(key, recipe.output, recipe.input, recipe.experience, recipe.cookingTime, recipe.exactMatch)
     }
 
+    /**
+     * Creates a BlastingRecipe and registers it in the given register.
+     * @param key The key by which the recipe will be registered.
+     * @param output The item we will get as a result of the recipe
+     * @param input The subject from which we will be getting output
+     * @param experience The experience the player will gain as a result of the recipe
+     * @param cookingTime Time required for cooking (in ticks)
+     * @param exactChoice If true, only an ItemStack with exactly the same Nbt will be able to participate in the recipe.
+     *
+     * @see BlastingRecipe
+     * @see getRecipeChoice
+     */
     fun registerBlastingRecipe(
         key: NamespacedKey,
         output: ItemStack,
@@ -129,10 +194,29 @@ class RecipeRegistry {
         registeredRecipes.add(key)
     }
 
+    /**
+     * Creates a BlastingRecipe and registers it in the given register.
+     * @param key The key by which the recipe will be registered.
+     * @param recipe Recipe object
+     *
+     * @see BlastingRecipe
+     */
     fun registerBlastingRecipe(key: NamespacedKey, recipe: CookingRecipe) {
         this.registerBlastingRecipe(key, recipe.output, recipe.input, recipe.experience, recipe.cookingTime, recipe.exactMatch)
     }
 
+    /**
+     * Creates a SmokingRecipe and registers it in the given register.
+     * @param key The key by which the recipe will be registered.
+     * @param output The item we will get as a result of the recipe
+     * @param input The subject from which we will be getting output
+     * @param experience The experience the player will gain as a result of the recipe
+     * @param cookingTime Time required for cooking (in ticks)
+     * @param exactChoice If true, only an ItemStack with exactly the same Nbt will be able to participate in the recipe.
+     *
+     * @see SmokingRecipe
+     * @see getRecipeChoice
+     */
     fun registerSmokingRecipe(
         key: NamespacedKey,
         output: ItemStack,
@@ -147,6 +231,13 @@ class RecipeRegistry {
         registeredRecipes.add(key)
     }
 
+    /**
+     * Creates a SmokingRecipe and registers it in the given register.
+     * @param key The key by which the recipe will be registered.
+     * @param recipe Recipe object
+     *
+     * @see SmokingRecipe
+     */
     fun registerSmokingRecipe(key: NamespacedKey, recipe: CookingRecipe) {
         this.registerSmokingRecipe(key, recipe.output, recipe.input, recipe.experience, recipe.cookingTime, recipe.exactMatch)
     }
