@@ -11,8 +11,6 @@ import me.zaksen.skillify_core.api.config.data.recipe.CookingRecipe
 import me.zaksen.skillify_core.api.config.data.recipe.Recipe
 import me.zaksen.skillify_core.api.config.data.recipe.ShapedRecipe
 import me.zaksen.skillify_core.api.config.data.recipe.ShapelessRecipe
-import me.zaksen.skillify_core.api.config.serialization.NamespacedKeyValue
-import me.zaksen.skillify_core.api.config.serialization.NamespacedValue
 import java.io.File
 
 val yaml by lazy {
@@ -21,9 +19,6 @@ val yaml by lazy {
             strictMode = false
         ),
         serializersModule = SerializersModule {
-            polymorphic(NamespacedValue::class) {
-                subclass(NamespacedKeyValue::class)
-            }
             polymorphic(Recipe::class) {
                 subclass(ShapedRecipe::class)
                 subclass(ShapelessRecipe::class)
