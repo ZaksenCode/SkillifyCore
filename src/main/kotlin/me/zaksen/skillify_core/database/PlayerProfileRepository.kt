@@ -18,6 +18,7 @@ class PlayerProfileRepository(
     private val connection: Connection = DriverManager.getConnection("jdbc:mysql://$host:$port/$base", user, pass)
 
     init {
+        PlayerProfileTableBuilder(connection, table).buildTable()
         try {
             val statement = connection.prepareStatement("""
                 SELECT * FROM $table
@@ -26,10 +27,10 @@ class PlayerProfileRepository(
 
             // Load values into cache
             while (set.next()) {
-                val id = set.getLong("id")
-                val uuid = set.getString("uuid")
-                val name = set.getString("name")
-                val registerTime = set.getTimestamp("register_time")
+                val id = set.getLong("player_id")
+                val uuid = set.getString("player_uuid")
+                val name = set.getString("player_name")
+                val registerTime = set.getTimestamp("player_register_time")
                 cache.add(PlayerProfile(id, UUID.fromString(uuid), name, registerTime))
             }
 
@@ -39,7 +40,7 @@ class PlayerProfileRepository(
     override fun add(value: PlayerProfile) {
         try {
             val statement = connection.prepareStatement("""
-                INSERT INTO $table (uuid, name, register_time)
+                INSERT INTO $table (player_uuid, player_name, player_register_time)
                 VALUES (?, ?, ?);
             """)
             statement.setString(1, value.uuid.toString())
@@ -55,7 +56,7 @@ class PlayerProfileRepository(
         try {
             val statement = connection.prepareStatement("""
                 DELETE FROM $table 
-                WHERE id = ?;
+                WHERE player_id = ?;
             """)
             statement.setLong(1, value.id)
             statement.execute()
@@ -68,8 +69,8 @@ class PlayerProfileRepository(
         try {
             val statement = connection.prepareStatement("""
                 UPDATE $table
-                SET uuid = ?, name = ?, register_time = ?
-                WHERE id = ?; 
+                SET player_uuid = ?, player_name = ?, player_register_time = ?
+                WHERE player_id = ?; 
             """)
             statement.setString(1, value.uuid.toString())
             statement.setString(2, value.name)

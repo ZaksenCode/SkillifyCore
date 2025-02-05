@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "me.zaksen"
-version = "1.0.0"
+version = "1.0.2"
 
 repositories {
     mavenCentral()
@@ -26,7 +26,7 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("com.charleskorn.kaml:kaml:0.66.0")
-    implementation("xyz.xenondevs.invui:invui:${property("invui-version")}")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
 }
 
 val targetJavaVersion = 17

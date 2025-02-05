@@ -2,15 +2,34 @@ package me.zaksen.skillify_core.api.config
 
 import com.charleskorn.kaml.Yaml
 import com.charleskorn.kaml.YamlConfiguration
+import com.destroystokyo.paper.Namespaced
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
+import kotlinx.serialization.modules.SerializersModule
+import kotlinx.serialization.modules.polymorphic
+import kotlinx.serialization.modules.subclass
+import me.zaksen.skillify_core.api.config.data.recipe.CookingRecipe
+import me.zaksen.skillify_core.api.config.data.recipe.Recipe
+import me.zaksen.skillify_core.api.config.data.recipe.ShapedRecipe
+import me.zaksen.skillify_core.api.config.data.recipe.ShapelessRecipe
+import org.bukkit.NamespacedKey
 import java.io.File
 
 val yaml by lazy {
     Yaml(
         configuration = YamlConfiguration(
             strictMode = false
-        )
+        ),
+        serializersModule = SerializersModule {
+            polymorphic(Namespaced::class) {
+                subclass(NamespacedKey::class)
+            }
+            polymorphic(Recipe::class) {
+                subclass(ShapedRecipe::class)
+                subclass(ShapelessRecipe::class)
+                subclass(CookingRecipe::class)
+            }
+        }
     )
 }
 
