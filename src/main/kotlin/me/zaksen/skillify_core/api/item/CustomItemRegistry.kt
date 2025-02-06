@@ -108,10 +108,7 @@ class CustomItemRegistry(
             return
         }
 
-        val meta = stack.itemMeta
-        val pdc = meta.persistentDataContainer
-        pdc.set(itemIdKey, PersistentDataType.STRING, id.toString())
-        stack.itemMeta = meta
+        stack.itemMeta.persistentDataContainer.set(itemIdKey, PersistentDataType.STRING, id.toString())
     }
 
     fun getRegisteredItems(): Map<NamespacedKey, CustomItem> {
