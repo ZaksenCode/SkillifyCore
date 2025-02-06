@@ -3,8 +3,8 @@ package me.zaksen.skillify_core.api.util.extensions
 import org.bukkit.NamespacedKey
 
 fun String.toNamespacedKey(): NamespacedKey {
-    if(!this.matches(Regex.fromLiteral("[a-zA-Z]+:[a-zA-Z]+"))) {
-        throw IllegalArgumentException("To create NamespacedKey string should match regex: '[a-zA-Z]+:[a-zA-Z]+'")
+    if(!this.matches(Regex.fromLiteral("[a-zA-Z_]+:[a-zA-Z_]+"))) {
+        throw IllegalArgumentException("To create NamespacedKey string should match regex: '[a-zA-Z_]+:[a-zA-Z_]+'")
     }
     val split = this.split(":")
 
