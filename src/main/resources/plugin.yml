@@ -3,3 +3,11 @@ version: '1.0.12'
 main: me.zaksen.skillify_core.SkillifyCore
 api-version: '1.20'
 authors: [ Zaksen_ ]
+commands:
+  custom_items:
+    description: Open items menu or give item
+    usage: /<command> <subcommand>
+    aliases:
+      - c_items
+      - customitems
+      - citems
