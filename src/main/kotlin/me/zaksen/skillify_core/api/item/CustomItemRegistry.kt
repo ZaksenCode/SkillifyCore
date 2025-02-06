@@ -108,7 +108,9 @@ class CustomItemRegistry(
             return
         }
 
-        stack.itemMeta.persistentDataContainer.set(itemIdKey, PersistentDataType.STRING, id.toString())
+        stack.editMeta {
+            it.persistentDataContainer.set(itemIdKey, PersistentDataType.STRING, id.toString())
+        }
     }
 
     fun getRegisteredItems(): Map<NamespacedKey, CustomItem> {
