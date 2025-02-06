@@ -104,10 +104,6 @@ class CustomItemRegistry(
      * @see ItemStack
      */
     fun writeItemId(id: NamespacedKey, stack: ItemStack) {
-        if(!stack.hasItemMeta()) {
-            return
-        }
-
         stack.editMeta {
             it.persistentDataContainer.set(itemIdKey, PersistentDataType.STRING, id.toString())
         }
