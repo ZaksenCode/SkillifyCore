@@ -1,6 +1,7 @@
 package me.zaksen.skillify_core
 
 import me.zaksen.skillify_core.api.config.loadConfig
+import me.zaksen.skillify_core.api.item.CustomItemRegistry
 import me.zaksen.skillify_core.config.CoreConfig
 import me.zaksen.skillify_core.database.PlayerProfileRepository
 import me.zaksen.skillify_core.event.PlayerListener
@@ -16,10 +17,17 @@ class SkillifyCore : JavaPlugin() {
     private val logger: Logger = LoggerFactory.getLogger("SkillifyCore")
     private lateinit var coreConfig: CoreConfig
     lateinit var playersRepository: PlayerProfileRepository
+
+    val keys: SkillifyKeys = SkillifyKeys(this)
+
     val defaultRecipeRegistry: RecipeRegistry = RecipeRegistry()
+    val itemRegistry: CustomItemRegistry = CustomItemRegistry(keys.itemId)
+
+    override fun onLoad() {
+        INSTANCE = this
+    }
 
     override fun onEnable() {
-        INSTANCE = this
         coreConfig = loadConfig(File(dataFolder, "config.yml"))
 
         playersRepository = PlayerProfileRepository(
@@ -32,7 +40,7 @@ class SkillifyCore : JavaPlugin() {
             coreConfig.mysql.pass
         )
 
-        Bukkit.getPluginManager().registerEvents(PlayerListener(playersRepository), this)
+        Bukkit.getPluginManager().registerEvents(PlayerListener(playersRepository, itemRegistry), this)
     }
 
     override fun onDisable() {
@@ -42,6 +50,9 @@ class SkillifyCore : JavaPlugin() {
     companion object {
         private lateinit var INSTANCE: SkillifyCore
 
+        /**
+         * Returns Instance to an object of class SkillifyCore
+         */
         fun getCore(): SkillifyCore {
             return INSTANCE
         }
