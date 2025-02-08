@@ -6,6 +6,7 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 import me.zaksen.skillify_core.api.config.serialization.surrogate.ItemMetaSurrogate
+import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.ItemMeta
 
@@ -18,7 +19,7 @@ class ItemMetaSerializer: KSerializer<ItemMeta> {
     override fun deserialize(decoder: Decoder): ItemMeta {
         val value = decoder.decodeSerializableValue(ItemMetaSurrogate.serializer())
 
-        val meta = ItemStack.empty().itemMeta
+        val meta = ItemStack(Material.BEDROCK).itemMeta
 
         meta.displayName(value.displayName)
         meta.lore(value.lore)

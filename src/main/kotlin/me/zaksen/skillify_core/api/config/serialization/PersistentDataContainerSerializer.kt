@@ -6,6 +6,7 @@ import kotlinx.serialization.builtins.ByteArraySerializer
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
+import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataContainer
 
@@ -15,7 +16,8 @@ class PersistentDataContainerSerializer: KSerializer<PersistentDataContainer> {
 
     override fun deserialize(decoder: Decoder): PersistentDataContainer {
         val byteArray = decoder.decodeSerializableValue(delegateSerializer)
-        val pdc = ItemStack.empty().itemMeta.persistentDataContainer
+        val pdc = ItemStack(Material.BEDROCK).itemMeta.persistentDataContainer
+
         pdc.readFromBytes(byteArray, true)
         return pdc
     }
