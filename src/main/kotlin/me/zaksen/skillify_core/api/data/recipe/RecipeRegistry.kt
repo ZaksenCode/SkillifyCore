@@ -1,6 +1,5 @@
-package me.zaksen.skillify_core.api.recipe
+package me.zaksen.skillify_core.api.data.recipe
 
-import me.zaksen.skillify_core.api.config.data.recipe.CookingRecipe
 import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
@@ -59,7 +58,7 @@ class RecipeRegistry {
      *
      * @see ShapedRecipe
      */
-    fun registerShapedRecipe(key: NamespacedKey, recipe: me.zaksen.skillify_core.api.config.data.recipe.ShapedRecipe) {
+    fun registerShapedRecipe(key: NamespacedKey, recipe: me.zaksen.skillify_core.api.data.recipe.ShapedRecipe) {
         this.registerShapedRecipe(key, recipe.output, recipe.grid, recipe.gridResolve)
     }
 
@@ -93,7 +92,7 @@ class RecipeRegistry {
      *
      * @see ShapelessRecipe
      */
-    fun registerShapelessRecipe(key: NamespacedKey, recipe: me.zaksen.skillify_core.api.config.data.recipe.ShapelessRecipe) {
+    fun registerShapelessRecipe(key: NamespacedKey, recipe: me.zaksen.skillify_core.api.data.recipe.ShapelessRecipe) {
         this.registerShapelessRecipe(key, recipe.output, recipe.ingredients)
     }
 

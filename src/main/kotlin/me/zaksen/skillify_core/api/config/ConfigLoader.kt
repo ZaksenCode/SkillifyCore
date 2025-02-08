@@ -7,24 +7,35 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
 import kotlinx.serialization.modules.subclass
-import me.zaksen.skillify_core.api.config.data.recipe.CookingRecipe
-import me.zaksen.skillify_core.api.config.data.recipe.Recipe
-import me.zaksen.skillify_core.api.config.data.recipe.ShapedRecipe
-import me.zaksen.skillify_core.api.config.data.recipe.ShapelessRecipe
+import me.zaksen.skillify_core.api.config.serialization.ItemStackValue
+import me.zaksen.skillify_core.api.data.loot.entry.ItemStackEntry
+import me.zaksen.skillify_core.api.data.loot.entry.LivingEntityEntry
+import me.zaksen.skillify_core.api.data.loot.entry.LootTableEntry
+import me.zaksen.skillify_core.api.data.recipe.CookingRecipe
+import me.zaksen.skillify_core.api.data.recipe.Recipe
+import me.zaksen.skillify_core.api.data.recipe.ShapedRecipe
+import me.zaksen.skillify_core.api.data.recipe.ShapelessRecipe
+import org.bukkit.entity.LivingEntity
 import java.io.File
+
+val modules = SerializersModule {
+    polymorphic(Recipe::class) {
+        subclass(ShapedRecipe::class)
+        subclass(ShapelessRecipe::class)
+        subclass(CookingRecipe::class)
+    }
+    polymorphic(LootTableEntry::class) {
+        subclass(ItemStackEntry::class)
+        subclass(LivingEntityEntry::class)
+    }
+}
 
 val yaml by lazy {
     Yaml(
         configuration = YamlConfiguration(
             strictMode = false
         ),
-        serializersModule = SerializersModule {
-            polymorphic(Recipe::class) {
-                subclass(ShapedRecipe::class)
-                subclass(ShapelessRecipe::class)
-                subclass(CookingRecipe::class)
-            }
-        }
+        serializersModule = modules
     )
 }
 

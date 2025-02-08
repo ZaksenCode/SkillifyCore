@@ -5,7 +5,7 @@ import me.zaksen.skillify_core.api.item.CustomItemRegistry
 import me.zaksen.skillify_core.config.CoreConfig
 import me.zaksen.skillify_core.database.PlayerProfileRepository
 import me.zaksen.skillify_core.event.PlayerListener
-import me.zaksen.skillify_core.api.recipe.RecipeRegistry
+import me.zaksen.skillify_core.api.data.recipe.RecipeRegistry
 import me.zaksen.skillify_core.command.CustomItemsCommand
 import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
