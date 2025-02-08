@@ -1,5 +1,6 @@
 package me.zaksen.skillify_core.api.item
 
+import me.zaksen.skillify_core.api.subplugin.SubPlugin
 import me.zaksen.skillify_core.api.util.extensions.toNamespacedKey
 import org.bukkit.NamespacedKey
 import org.bukkit.inventory.ItemStack
@@ -15,6 +16,7 @@ import java.util.function.Supplier
  * @see me.zaksen.skillify_core.SkillifyCore.getCore
  */
 class CustomItemRegistry(
+    private val subPlugins: Set<SubPlugin>,
     private val itemIdKey: NamespacedKey
 ) {
     private val registeredItems: MutableMap<NamespacedKey, CustomItem> = mutableMapOf()
@@ -111,5 +113,18 @@ class CustomItemRegistry(
 
     fun getRegisteredItems(): Map<NamespacedKey, CustomItem> {
         return registeredItems
+    }
+
+    /**
+     * Removes all items in a given register
+     * Better use if you needed some sort of reboot.
+     */
+    fun clearRegistry() {
+        registeredItems.clear()
+        defaultStacks.clear()
+
+        subPlugins.forEach {
+            it.loadItems(this)
+        }
     }
 }

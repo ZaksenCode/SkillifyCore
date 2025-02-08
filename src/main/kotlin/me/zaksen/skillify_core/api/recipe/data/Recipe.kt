@@ -1,4 +1,4 @@
-package me.zaksen.skillify_core.api.data.recipe
+package me.zaksen.skillify_core.api.recipe.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

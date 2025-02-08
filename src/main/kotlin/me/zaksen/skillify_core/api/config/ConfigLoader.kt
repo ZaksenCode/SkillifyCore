@@ -7,15 +7,13 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
 import kotlinx.serialization.modules.subclass
-import me.zaksen.skillify_core.api.config.serialization.ItemStackValue
 import me.zaksen.skillify_core.api.data.loot.entry.ItemStackEntry
 import me.zaksen.skillify_core.api.data.loot.entry.LivingEntityEntry
 import me.zaksen.skillify_core.api.data.loot.entry.LootTableEntry
-import me.zaksen.skillify_core.api.data.recipe.CookingRecipe
-import me.zaksen.skillify_core.api.data.recipe.Recipe
-import me.zaksen.skillify_core.api.data.recipe.ShapedRecipe
-import me.zaksen.skillify_core.api.data.recipe.ShapelessRecipe
-import org.bukkit.entity.LivingEntity
+import me.zaksen.skillify_core.api.recipe.data.CookingRecipe
+import me.zaksen.skillify_core.api.recipe.data.Recipe
+import me.zaksen.skillify_core.api.recipe.data.ShapedRecipe
+import me.zaksen.skillify_core.api.recipe.data.ShapelessRecipe
 import java.io.File
 
 val modules = SerializersModule {

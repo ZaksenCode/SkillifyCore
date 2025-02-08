@@ -1,5 +1,7 @@
-package me.zaksen.skillify_core.api.data.recipe
+package me.zaksen.skillify_core.api.recipe
 
+import me.zaksen.skillify_core.api.recipe.data.CookingRecipe
+import me.zaksen.skillify_core.api.subplugin.SubPlugin
 import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
@@ -8,7 +10,9 @@ import org.bukkit.inventory.*
 /**
  * Mostly a utilitarian class, for conveniently adding recipes and revealing them to the player.
  */
-class RecipeRegistry {
+class RecipeRegistry(
+    private val subPlugins: Set<SubPlugin>
+) {
 
     private val registeredRecipes: MutableSet<NamespacedKey> = mutableSetOf()
 
@@ -58,7 +62,7 @@ class RecipeRegistry {
      *
      * @see ShapedRecipe
      */
-    fun registerShapedRecipe(key: NamespacedKey, recipe: me.zaksen.skillify_core.api.data.recipe.ShapedRecipe) {
+    fun registerShapedRecipe(key: NamespacedKey, recipe: me.zaksen.skillify_core.api.recipe.data.ShapedRecipe) {
         this.registerShapedRecipe(key, recipe.output, recipe.grid, recipe.gridResolve)
     }
 
@@ -92,7 +96,7 @@ class RecipeRegistry {
      *
      * @see ShapelessRecipe
      */
-    fun registerShapelessRecipe(key: NamespacedKey, recipe: me.zaksen.skillify_core.api.data.recipe.ShapelessRecipe) {
+    fun registerShapelessRecipe(key: NamespacedKey, recipe: me.zaksen.skillify_core.api.recipe.data.ShapelessRecipe) {
         this.registerShapelessRecipe(key, recipe.output, recipe.ingredients)
     }
 
@@ -257,5 +261,21 @@ class RecipeRegistry {
      */
     fun getRegisteredRecipes(): Set<NamespacedKey> {
         return registeredRecipes
+    }
+
+    /**
+     * Removes all recipes in a given register from the server and hides them from players
+     * Better use if you needed some sort of reboot.
+     */
+    fun clearRegistry() {
+        registeredRecipes.forEach {
+            Bukkit.removeRecipe(it)
+            Bukkit.getOnlinePlayers().forEach { player -> player.undiscoverRecipe(it) }
+        }
+        registeredRecipes.clear()
+
+        subPlugins.forEach {
+            it.loadRecipes(this)
+        }
     }
 }
