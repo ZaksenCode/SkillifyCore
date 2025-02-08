@@ -9,6 +9,7 @@ import me.zaksen.skillify_core.event.PlayerListener
 import me.zaksen.skillify_core.api.recipe.RecipeRegistry
 import me.zaksen.skillify_core.api.subplugin.SubPlugin
 import me.zaksen.skillify_core.command.CustomItemsCommand
+import me.zaksen.skillify_core.command.SkillifyReloadCommand
 import org.bukkit.Bukkit
 import org.bukkit.plugin.java.JavaPlugin
 import org.slf4j.Logger
@@ -39,6 +40,7 @@ class SkillifyCore : JavaPlugin() {
         subPlugins.forEach {
             it.loadRecipes(recipeRegistry)
             it.loadLootTables(lootTableRegistry)
+            it.loadItems(itemRegistry)
         }
 
         registerCommands()
@@ -63,11 +65,22 @@ class SkillifyCore : JavaPlugin() {
             cmd.setExecutor(processor)
             cmd.tabCompleter = processor
         }
+        getCommand("skillify_reload").let {
+            val processor = SkillifyReloadCommand(this)
+            val cmd = checkNotNull(it)
+            cmd.setExecutor(processor)
+        }
     }
 
     fun registerSubPlugin(plugin: SubPlugin) {
         subPlugins.add(plugin)
         logger.debug("Registered new sub plugin (${plugin.getName()})!")
+    }
+
+    fun reload() {
+        recipeRegistry.reloadRegistry()
+        lootTableRegistry.reloadRegistry()
+        itemRegistry.reloadRegistry()
     }
 
     override fun onDisable() {

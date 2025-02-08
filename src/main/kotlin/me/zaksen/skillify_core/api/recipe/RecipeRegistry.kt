@@ -267,7 +267,7 @@ class RecipeRegistry(
      * Removes all recipes in a given register from the server and hides them from players
      * Better use if you needed some sort of reboot.
      */
-    fun clearRegistry() {
+    fun reloadRegistry() {
         registeredRecipes.forEach {
             Bukkit.removeRecipe(it)
             Bukkit.getOnlinePlayers().forEach { player -> player.undiscoverRecipe(it) }

@@ -11,3 +11,9 @@ commands:
       - c_items
       - customitems
       - citems
+  skillify_reload:
+    description: Reload core and some sub plugins logic
+    usage: /<command>
+    aliases:
+      - slfy_reload
+      - slfy_r

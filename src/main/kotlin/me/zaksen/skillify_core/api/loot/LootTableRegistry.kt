@@ -17,7 +17,7 @@ class LootTableRegistry(
         return registeredLootTables[key]
     }
 
-    fun clearRegistry() {
+    fun reloadRegistry() {
         registeredLootTables.clear()
         subPlugins.forEach {
             it.loadLootTables(this)

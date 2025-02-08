@@ -119,7 +119,7 @@ class CustomItemRegistry(
      * Removes all items in a given register
      * Better use if you needed some sort of reboot.
      */
-    fun clearRegistry() {
+    fun reloadRegistry() {
         registeredItems.clear()
         defaultStacks.clear()
 
