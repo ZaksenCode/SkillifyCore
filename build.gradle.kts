@@ -20,6 +20,9 @@ repositories {
     maven("https://repo.xenondevs.xyz/releases") {
         name = "INV-UI"
     }
+    maven("https://repo.dmulloy2.net/repository/public/") {
+        name = "ProtocolLib"
+    }
 }
 
 dependencies {
@@ -27,6 +30,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("com.charleskorn.kaml:kaml:0.66.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+    compileOnly("com.comphenix.protocol:ProtocolLib:4.8.0")
 }
 
 val targetJavaVersion = 17
