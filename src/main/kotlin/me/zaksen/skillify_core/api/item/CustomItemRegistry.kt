@@ -124,7 +124,7 @@ class CustomItemRegistry(
         defaultStacks.clear()
 
         subPlugins.forEach {
-            it.loadItems(this)
+            it.loadItems(this, itemIdKey)
         }
     }
 }
