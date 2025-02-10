@@ -3,6 +3,7 @@ package me.zaksen.skillify_core.api.subplugin
 import me.zaksen.skillify_core.api.item.CustomItemRegistry
 import me.zaksen.skillify_core.api.loot.LootTableRegistry
 import me.zaksen.skillify_core.api.recipe.RecipeRegistry
+import org.bukkit.NamespacedKey
 
 /**
  * Interface that addons for SkillifyCore should inherit
@@ -34,5 +35,5 @@ interface SubPlugin {
      *
      * @see CustomItemRegistry
      */
-    fun loadItems(registry: CustomItemRegistry) {}
+    fun loadItems(registry: CustomItemRegistry, itemIdKey: NamespacedKey) {}
 }

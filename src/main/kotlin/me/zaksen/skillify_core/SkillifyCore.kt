@@ -40,7 +40,7 @@ class SkillifyCore : JavaPlugin() {
         subPlugins.forEach {
             it.loadRecipes(recipeRegistry)
             it.loadLootTables(lootTableRegistry)
-            it.loadItems(itemRegistry)
+            it.loadItems(itemRegistry, keys.itemId)
         }
 
         registerCommands()

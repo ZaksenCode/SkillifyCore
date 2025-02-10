@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "me.zaksen"
-version = "1.0.15"
+version = "1.0.16"
 
 repositories {
     mavenCentral()
