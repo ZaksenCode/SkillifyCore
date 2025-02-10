@@ -12,10 +12,10 @@ import org.bukkit.inventory.ItemFlag
 @SerialName("ItemMeta")
 data class ItemMetaSurrogate(
     @SerialName("display_name")
-    val displayName: Component?,
+    val displayName: ComponentValue?,
 
     @SerialName("lore")
-    val lore: List<Component>?,
+    val lore: List<ComponentValue>?,
 
     @SerialName("custom_model_data")
     val customModelData: Int,
