@@ -14,6 +14,9 @@ import me.zaksen.skillify_core.api.recipe.data.CookingRecipe
 import me.zaksen.skillify_core.api.recipe.data.Recipe
 import me.zaksen.skillify_core.api.recipe.data.ShapedRecipe
 import me.zaksen.skillify_core.api.recipe.data.ShapelessRecipe
+import me.zaksen.skillify_core.api.recipe.data.entry.MaterialEntry
+import me.zaksen.skillify_core.api.recipe.data.entry.RecipeEntry
+import me.zaksen.skillify_core.api.recipe.data.entry.StackEntry
 import java.io.File
 
 val modules = SerializersModule {
@@ -25,6 +28,10 @@ val modules = SerializersModule {
     polymorphic(LootTableEntry::class) {
         subclass(ItemStackEntry::class)
         subclass(LivingEntityEntry::class)
+    }
+    polymorphic(RecipeEntry::class) {
+        subclass(StackEntry::class)
+        subclass(MaterialEntry::class)
     }
 }
 

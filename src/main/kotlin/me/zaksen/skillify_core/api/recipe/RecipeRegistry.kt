@@ -1,6 +1,7 @@
 package me.zaksen.skillify_core.api.recipe
 
 import me.zaksen.skillify_core.api.recipe.data.CookingRecipe
+import me.zaksen.skillify_core.api.recipe.data.entry.RecipeEntry
 import me.zaksen.skillify_core.api.subplugin.SubPlugin
 import org.bukkit.Bukkit
 import org.bukkit.NamespacedKey
@@ -40,15 +41,15 @@ class RecipeRegistry(
      */
     fun registerShapedRecipe(
         key: NamespacedKey,
-        output: ItemStack,
+        output: RecipeEntry,
         shape: List<String>,
-        shapeResolver: Map<Char, ItemStack>
+        shapeResolver: Map<Char, RecipeEntry>
     ) {
-        val shapedRecipe = ShapedRecipe(key, output)
+        val shapedRecipe = ShapedRecipe(key, output.asStack())
         shapedRecipe.shape(*shape.toTypedArray())
 
         shapeResolver.forEach {
-            shapedRecipe.setIngredient(it.key, it.value)
+            shapedRecipe.setIngredient(it.key, it.value.asStack())
         }
 
         Bukkit.addRecipe(shapedRecipe)
@@ -76,13 +77,13 @@ class RecipeRegistry(
      */
     fun registerShapelessRecipe(
         key: NamespacedKey,
-        output: ItemStack,
-        ingredients: List<ItemStack>
+        output: RecipeEntry,
+        ingredients: List<RecipeEntry>
     ) {
-        val shapelessRecipe = ShapelessRecipe(key, output)
+        val shapelessRecipe = ShapelessRecipe(key, output.asStack())
 
         ingredients.forEach {
-            shapelessRecipe.addIngredient(it)
+            shapelessRecipe.addIngredient(it.asStack())
         }
 
         Bukkit.addRecipe(shapelessRecipe)
@@ -114,14 +115,14 @@ class RecipeRegistry(
      */
     fun registerFurnaceRecipe(
         key: NamespacedKey,
-        output: ItemStack,
-        input: ItemStack,
+        output: RecipeEntry,
+        input: RecipeEntry,
         experience: Float,
         cookingTime: Int,
         exactChoice: Boolean
     ) {
-        val choice: RecipeChoice = getRecipeChoice(input, exactChoice)
-        val furnaceRecipe = FurnaceRecipe(key, output, choice, experience, cookingTime)
+        val choice: RecipeChoice = getRecipeChoice(input.asStack(), exactChoice)
+        val furnaceRecipe = FurnaceRecipe(key, output.asStack(), choice, experience, cookingTime)
         Bukkit.addRecipe(furnaceRecipe)
         registeredRecipes.add(key)
     }
@@ -151,14 +152,14 @@ class RecipeRegistry(
      */
     fun registerCampfireRecipe(
         key: NamespacedKey,
-        output: ItemStack,
-        input: ItemStack,
+        output: RecipeEntry,
+        input: RecipeEntry,
         experience: Float,
         cookingTime: Int,
         exactChoice: Boolean
     ) {
-        val choice: RecipeChoice = getRecipeChoice(input, exactChoice)
-        val campfireRecipe = CampfireRecipe(key, output, choice, experience, cookingTime)
+        val choice: RecipeChoice = getRecipeChoice(input.asStack(), exactChoice)
+        val campfireRecipe = CampfireRecipe(key, output.asStack(), choice, experience, cookingTime)
         Bukkit.addRecipe(campfireRecipe)
         registeredRecipes.add(key)
     }
@@ -188,14 +189,14 @@ class RecipeRegistry(
      */
     fun registerBlastingRecipe(
         key: NamespacedKey,
-        output: ItemStack,
-        input: ItemStack,
+        output: RecipeEntry,
+        input: RecipeEntry,
         experience: Float,
         cookingTime: Int,
         exactChoice: Boolean
     ) {
-        val choice: RecipeChoice = getRecipeChoice(input, exactChoice)
-        val blastingRecipe = BlastingRecipe(key, output, choice, experience, cookingTime)
+        val choice: RecipeChoice = getRecipeChoice(input.asStack(), exactChoice)
+        val blastingRecipe = BlastingRecipe(key, output.asStack(), choice, experience, cookingTime)
         Bukkit.addRecipe(blastingRecipe)
         registeredRecipes.add(key)
     }
@@ -225,14 +226,14 @@ class RecipeRegistry(
      */
     fun registerSmokingRecipe(
         key: NamespacedKey,
-        output: ItemStack,
-        input: ItemStack,
+        output: RecipeEntry,
+        input: RecipeEntry,
         experience: Float,
         cookingTime: Int,
         exactChoice: Boolean
     ) {
-        val choice: RecipeChoice = getRecipeChoice(input, exactChoice)
-        val smokingRecipe = SmokingRecipe(key, output, choice, experience, cookingTime)
+        val choice: RecipeChoice = getRecipeChoice(input.asStack(), exactChoice)
+        val smokingRecipe = SmokingRecipe(key, output.asStack(), choice, experience, cookingTime)
         Bukkit.addRecipe(smokingRecipe)
         registeredRecipes.add(key)
     }

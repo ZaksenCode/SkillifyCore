@@ -3,17 +3,16 @@ package me.zaksen.skillify_core.api.recipe.data
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import me.zaksen.skillify_core.api.config.serialization.ItemStackSerializer
+import me.zaksen.skillify_core.api.recipe.data.entry.RecipeEntry
 import org.bukkit.inventory.ItemStack
 
 @Serializable
 data class CookingRecipe(
     @SerialName("output")
-    @Serializable(with = ItemStackSerializer::class)
-    override val output: ItemStack,
+    override val output: RecipeEntry,
 
     @SerialName("input")
-    @Serializable(with = ItemStackSerializer::class)
-    val input: ItemStack,
+    val input: RecipeEntry,
 
     @SerialName("experience")
     val experience: Float,
