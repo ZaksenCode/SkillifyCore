@@ -1,6 +1,7 @@
 package me.zaksen.skillify_core.event
 
 import me.zaksen.skillify_core.api.item.CustomItemRegistry
+import me.zaksen.skillify_core.api.recipe.RecipeRegistry
 import me.zaksen.skillify_core.database.PlayerProfileRepository
 import me.zaksen.skillify_core.database.PlayerProfileUuidSpecification
 import me.zaksen.skillify_core.database.dao.PlayerProfile
@@ -17,11 +18,12 @@ import java.time.ZonedDateTime
 
 class PlayerListener(
     private val profileRepository: PlayerProfileRepository,
-    private val itemRegistry: CustomItemRegistry
+    private val itemRegistry: CustomItemRegistry,
+    private val recipeRegistry: RecipeRegistry
 ): Listener {
 
     @EventHandler
-    private fun registerNewPlayers(event: PlayerLoginEvent) {
+    private fun processPlayerJoining(event: PlayerLoginEvent) {
         val playerProfile = profileRepository.query(PlayerProfileUuidSpecification(event.player.uniqueId))
 
         if(playerProfile.isEmpty()) {
@@ -32,6 +34,8 @@ class PlayerListener(
                 Timestamp.from(ZonedDateTime.now().toInstant())
             ))
         }
+
+        recipeRegistry.revealRecipes(event.player)
     }
 
     @EventHandler

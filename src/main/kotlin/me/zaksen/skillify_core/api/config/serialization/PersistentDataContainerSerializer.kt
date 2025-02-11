@@ -10,6 +10,7 @@ import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataContainer
 
+// TODO - Made PRD serialization into human readable format
 class PersistentDataContainerSerializer: KSerializer<PersistentDataContainer> {
     private val delegateSerializer = ByteArraySerializer()
     override val descriptor: SerialDescriptor = delegateSerializer.descriptor

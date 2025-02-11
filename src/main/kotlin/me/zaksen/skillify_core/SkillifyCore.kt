@@ -38,9 +38,9 @@ class SkillifyCore : JavaPlugin() {
         coreConfig = loadConfig(File(dataFolder, "config.yml"))
 
         subPlugins.forEach {
-            it.loadRecipes(recipeRegistry)
             it.loadLootTables(lootTableRegistry)
             it.loadItems(itemRegistry, keys.itemId)
+            it.loadRecipes(recipeRegistry)
         }
 
         registerCommands()
@@ -55,7 +55,7 @@ class SkillifyCore : JavaPlugin() {
             coreConfig.mysql.pass
         )
 
-        Bukkit.getPluginManager().registerEvents(PlayerListener(playersRepository, itemRegistry), this)
+        Bukkit.getPluginManager().registerEvents(PlayerListener(playersRepository, itemRegistry, recipeRegistry), this)
     }
 
     private fun registerCommands() {
@@ -78,9 +78,9 @@ class SkillifyCore : JavaPlugin() {
     }
 
     fun reload() {
-        recipeRegistry.reloadRegistry()
         lootTableRegistry.reloadRegistry()
         itemRegistry.reloadRegistry()
+        recipeRegistry.reloadRegistry()
     }
 
     override fun onDisable() {
